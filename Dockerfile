@@ -16,9 +16,6 @@ RUN sed -i 's/rights="none"/rights="read|write"/g' /etc/ImageMagick-6/policy.xml
 # Set workdir
 WORKDIR /app
 
-# Copy Poppins font
-COPY fonts/Poppins.ttf /usr/share/fonts/truetype/Poppins.ttf
-RUN fc-cache -f -v
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
