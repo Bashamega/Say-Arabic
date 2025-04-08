@@ -43,7 +43,7 @@ def make_video(word_data, output_dir="output"):
 
     # Make sure the font supports Arabic! Try 'Amiri' or 'Arial' if Poppins doesn't.
     clip = TextClip(txt=final_text, fontsize=70, color='white', bg_color='black',
-                    size=(720, 1280), font="./fonts/tahoma.ttf")
+                    size=(720, 1280), font="./fonts/Amiri/Amiri-Bold.ttf")
     clip = clip.set_duration(3)
 
     # Add audio
