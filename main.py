@@ -21,7 +21,7 @@ def save_index(index_file, index):
 
 def main():
     words_file = "arabic-words/Datasets/startWithWords.json"
-    index_file = "index.txt"
+    index_file = "output/index.txt"
 
     try:
         words = load_words(words_file)
