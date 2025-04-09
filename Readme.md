@@ -1,4 +1,4 @@
-# Arabic Pronunciation
+# Say Arabic - نطق العربية
 
 
 This project provides a Python application that generates videos from Arabic words and their meanings. Each video includes the word spoken using text-to-speech, displayed with its meaning, and accompanied by an audio pronunciation.
