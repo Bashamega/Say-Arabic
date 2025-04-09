@@ -19,7 +19,7 @@ def make_video(word, output_dir="output"):
     bidi_word = get_display(reshaped_word)
 
     # Make sure the font supports Arabic! Try 'Amiri' or 'Arial' if Poppins doesn't.
-    clip = TextClip(txt=bidi_word, fontsize=70, color='white', bg_color='black',
+    clip = TextClip(txt=bidi_word, fontsize=70, color='black', bg_color='white',
                     size=(720, 1280), font="./fonts/Amiri/Amiri-Bold.ttf")
     clip = clip.set_duration(3)
 
