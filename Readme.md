@@ -23,12 +23,12 @@ Ensure you have Docker installed on your system to build and run this applicatio
 
 2. **Build the Docker Image**
    ```
-   docker build -t arabic-word-video-generator .
+   docker build -t arabic-pronunciation .
    ```
 
 3. **Run the Container**
    ```
-   docker run arabic-word-video-generator
+   docker run arabic-pronunciation
    ```
 
 Alternatively, if you prefer to run it locally without Docker:
