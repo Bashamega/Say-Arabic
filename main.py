@@ -1,23 +1,12 @@
 import json
-import os
 from utils.generateVideo import make_video
+from utils.indexer import load_index, save_index
 
 # Load the JSON file
 def load_words(source):
     with open(source, encoding="utf-8") as f:
         return json.load(f)
 
-# Load index or default to 0
-def load_index(index_file):
-    if os.path.exists(index_file):
-        with open(index_file, "r") as f:
-            return int(f.read().strip())
-    return 0
-
-# Save the updated index
-def save_index(index_file, index):
-    with open(index_file, "w") as f:
-        f.write(str(index))
 
 def main():
     words_file = "arabic-words/Datasets/startWithWords.json"
