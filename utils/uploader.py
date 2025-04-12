@@ -1,10 +1,23 @@
 import os
+from dotenv import load_dotenv
 import google.auth.transport.requests
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
-def upload_video(file_path, title, description, category_id, privacy_status):
+# Load environment variables from .env file
+load_dotenv()
+
+def upload_video(file_path, word):
+    # Load the variables from environment
+    description = os.getenv("YOUTUBE_DESCRIPTION")
+    category_id = os.getenv("YOUTUBE_CATEGORY")
+    privacy_status = os.getenv("YOUTUBE_PRIVACY")
+
+    title = os.getenv("title").replace("#1", word)
+
+
+    # Set up OAuth 2.0 credentials
     creds = Credentials(
         None,
         refresh_token=os.environ["YOUTUBE_REFRESH_TOKEN"],
