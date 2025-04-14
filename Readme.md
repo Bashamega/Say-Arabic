@@ -23,12 +23,12 @@ Ensure you have Docker installed on your system to build and run this applicatio
 
 2. **Build the Docker Image**
    ```
-   docker build -t arabic-pronunciation .
+   docker build -t say-arabic .
    ```
 
 3. **Run the Container**
    ```
-   docker run arabic-pronunciation
+   docker run say-arabic
    ```
 
 Alternatively, if you prefer to run it locally without Docker:
