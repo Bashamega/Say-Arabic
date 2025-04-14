@@ -14,7 +14,7 @@ def upload_video(file_path, word):
     category_id = os.getenv("YOUTUBE_CATEGORY")
     privacy_status = os.getenv("YOUTUBE_PRIVACY")
 
-    title = os.getenv("title").replace("#1", word)
+    title = os.getenv("YOUTUBE_TITLE").replace("#1", word)
 
 
     # Set up OAuth 2.0 credentials
