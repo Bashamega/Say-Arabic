@@ -1,0 +1,58 @@
+name: Upload to YouTube
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # runs daily at midnight UTC
+  workflow_dispatch: # allows manual trigger via GitHub UI
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_TITLE: ${{ secrets.YOUTUBE_TITLE }}
+      YOUTUBE_DESCRIPTION: ${{ secrets.YOUTUBE_DESCRIPTION }}
+      YOUTUBE_CATEGORY: ${{ secrets.YOUTUBE_CATEGORY }}
+      YOUTUBE_PRIVACY: ${{ secrets.YOUTUBE_PRIVACY }}
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+            imagemagick \
+            ffmpeg \
+            libsndfile1 \
+            fonts-dejavu-core \
+            fontconfig \
+            curl \
+            && sudo rm -rf /var/lib/apt/lists/*
+
+      - name: Fix ImageMagick policy
+        run: |
+          sudo sed -i 's/rights="none"/rights="read|write"/g' /etc/ImageMagick-6/policy.xml || true
+
+      - name: Install Python requirements
+        run: pip install --no-cache-dir -r requirements.txt
+
+      - name: Run Python script
+        run: python main.py
+
+      - name: Commit and push changes if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Auto-commit: Update Indexer"
+          git push
