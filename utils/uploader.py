@@ -10,11 +10,11 @@ load_dotenv()
 
 def upload_video(file_path, word):
     # Load the variables from environment
-    description = os.getenv("YOUTUBE_DESCRIPTION")
+    description = os.getenv("YOUTUBE_DESCRIPTION").replace("#x", word)
     category_id = os.getenv("YOUTUBE_CATEGORY")
     privacy_status = os.getenv("YOUTUBE_PRIVACY")
 
-    title = os.getenv("YOUTUBE_TITLE").replace("#1", word)
+    title = os.getenv("YOUTUBE_TITLE").replace("#x", word)
 
 
     # Set up OAuth 2.0 credentials
