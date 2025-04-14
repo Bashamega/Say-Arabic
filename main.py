@@ -1,6 +1,8 @@
 import json
+from os import remove
 from utils.generateVideo import make_video
 from utils.indexer import load_index, save_index
+from utils.uploader import upload_video
 
 # Load the JSON file
 def load_words(source):
@@ -28,8 +30,10 @@ def main():
         if index < len(all_words):
             word = all_words[index]
             print(f"Processing word #{index}: {word}")
-            make_video(word)
+            path = make_video(word)
             save_index(index_file, index + 1)
+            upload_video(path, word)
+            remove(path)
         else:
             print("✅ All words have been processed.")
     except Exception as e:
