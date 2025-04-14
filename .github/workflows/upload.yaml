@@ -20,8 +20,10 @@ jobs:
 
 
     steps:
-      - name: Checkout code
+      - name: Checkout code (with submodules)
         uses: actions/checkout@v3
+        with:
+          submodules: true  # <- this ensures submodules are cloned
 
       - name: Set up Python
         uses: actions/setup-python@v4
