@@ -30,10 +30,11 @@ def main():
         if index < len(all_words):
             word = all_words[index]
             print(f"Processing word #{index}: {word}")
-            path = make_video(word)
+            paths = make_video(word)
             save_index(index_file, index + 1)
-            upload_video(path, word)
-            remove(path)
+            upload_video(paths[0], word)
+            remove(paths[0])
+            remove(paths[1])
         else:
             print("✅ All words have been processed.")
     except Exception as e:

@@ -30,4 +30,4 @@ def make_video(word, output_dir="output"):
     # Export video
     video_path = os.path.join(output_dir, f"{safe_word}.mp4")
     clip.write_videofile(video_path, fps=24)
-    return video_path
+    return [video_path, audio_path]
